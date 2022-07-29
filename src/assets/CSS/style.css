@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu {
+    height: 8vh;
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: grey;
+}
+.titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gold;
+}
