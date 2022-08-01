@@ -41,9 +41,18 @@ export default function Seats() {
         })}
             </ul>
             <ul className="guide">
-                <li className="seat selected"></li>
-                <li className="seat"></li>
-                <li className="seat unavailable"></li>
+                <div className="guideBox">
+                    <li className="seat selected"></li>
+                    <p className="guideText">Selecionado</p>
+                </div>
+                <div className="guideBox">
+                    <li className="seat"></li>
+                    <p className="guideText">Disponível</p>
+                </div>
+                <div className="guideBox">
+                    <li className="seat unavailable"></li>
+                    <p className="guideText">Indisponível</p>
+                </div>
             </ul>
         </div>
     )

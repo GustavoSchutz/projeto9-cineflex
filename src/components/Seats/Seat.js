@@ -17,8 +17,15 @@ export default function Seat(props) {
 
 	}, []);
  
-    
-    
+    function handleClickSeat() {
+        if (className === "seat") {
+            setClassName("seat selected");
+            console.log(props.ss.name)
+        } else if (className === "seat selected") {
+            setClassName("seat")
+        }
+    }
+
     // const className = "seat " + props.ss.isAvailable
 
     console.log(className)
@@ -32,7 +39,7 @@ export default function Seat(props) {
 
 
     return(
-        <li className={className}>
+        <li onClick={() => handleClickSeat()} className={className}>
             {props.ss.name}
         </li>
     )
