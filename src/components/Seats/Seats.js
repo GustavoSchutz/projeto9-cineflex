@@ -1,10 +1,12 @@
 import "./Seats.css";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Seat from "./Seat";
 
-export default function Seats() {
+export default function Seats(props) {
+
+    let navigate = useNavigate();
 
     const [sessionSeats, setSessionSeats] = useState(null);
 
@@ -12,7 +14,24 @@ export default function Seats() {
 
     const getSessionId = `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${params.sessionId}/seats`;
 
+    const [postResponse, setPostResponse] = useState("")
+
+    const postLink = 'https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many'
+
     const [selectedIds, setSelectedIds] = useState([]);
+
+    const [name, setName] = useState("");
+
+    const [cpf, setCpf] = useState("");
+
+    const handleChangeName = event => {
+        setName(event.target.value);
+      };
+    const handleChangeCPF = event => {
+        setCpf(event.target.value);
+    };
+
+    const postObj = {};
 
     useEffect(() => {
 
@@ -22,10 +41,12 @@ export default function Seats() {
 		request.then(response => {
 			setSessionSeats(response.data);
 		});
+        
+        console.log("Dentro do useEffect", sessionSeats);
 
-        console.log(sessionSeats);
 
 	}, []);
+
 
     if(sessionSeats === null) {
 		return <h2>Verificando se um trouxa roubou seu lugar...</h2>
@@ -33,6 +54,26 @@ export default function Seats() {
 
     console.log("oq é", sessionSeats);
 
+    function handleClickButtonPostSeats() {
+        console.log(selectedIds, name, cpf);
+        postObj.ids = selectedIds;
+        postObj.name = name;
+        postObj.cpf = cpf;
+        post();
+    }
+
+    function post() {
+        console.log(postObj);
+        const request = axios.post(postLink, postObj);
+
+        request.then(response => {
+            setPostResponse(response.data);
+        })
+  
+        console.log("a resposta do POST", postResponse);
+        
+        navigate(`/success/${params.sessionId}`);
+    }
 
     return (
         <>
@@ -63,22 +104,30 @@ export default function Seats() {
                     <div className="formTitle">
                         <p className="formTitleText">Nome do comprador:</p>
                     </div>
-                    <input name="fullName" placeholder="Seu nome completo...">
-                    </input>
+                    <input
+                     type="text"
+                     name="fullName"
+                     placeholder="Seu nome completo..."
+                     onChange={handleChangeName}
+                     value={name} />
                 </div>
                 <div className="formCPF">
                     <div className="formTitle">
                         <p className="formTitleText">CPF do comprador:</p>
                     </div>
                     <input 
-                        type="text"
-                        name="CPF"
-                        placeholder="Seu CPF, somente números...">
-                    </input>
+                     type="text"
+                     name="CPF"
+                     placeholder="Seu CPF, somente números..."
+                     onChange={handleChangeCPF}
+                     value={cpf} />
                 </div>
             </div>
             <div className="buyButton">
-                <div className="buttonActive">
+                <div onClick={() => {
+                    handleClickButtonPostSeats();
+                   
+                }} className="buttonActive">
                     <p className="button">Reservar assento(s)</p>
                 </div>
             </div>
