@@ -7,6 +7,7 @@ export default function Seat(props) {
 
     const [selectedSeat, setSelectedSeat] = useState(false);
 
+
     useEffect(() => {
 
         if (props.ss.isAvailable === false){
@@ -20,10 +21,14 @@ export default function Seat(props) {
     function handleClickSeat() {
         if (className === "seat") {
             setClassName("seat selected");
-            console.log(props.ss.name)
+            props.setSelectedIds([...props.selectedIds, props.ss.id]);
         } else if (className === "seat selected") {
-            setClassName("seat")
+            setClassName("seat");
+            props.setSelectedIds(props.selectedIds.filter(id => {
+                return id !== props.ss.id
+            }))
         }
+        console.log("finale", props.selectedIds)
     }
 
     // const className = "seat " + props.ss.isAvailable
@@ -40,7 +45,7 @@ export default function Seat(props) {
 
     return(
         <li onClick={() => handleClickSeat()} className={className}>
-            {props.ss.name}
+            <p>{props.ss.name}</p>
         </li>
     )
 }

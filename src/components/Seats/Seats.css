@@ -44,3 +44,59 @@
     background-color: #FBE192;
     border: 1px solid #F7C52B;
 }
+.selectedMovieInfo {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+.forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+.formName, .formCPF {
+    width: 80vw;
+    margin-bottom: 2rem;
+}
+.formName input {
+    width: 80vw;
+    height: 3rem;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+    text-indent: .5rem;
+}
+.formCPF input {
+    width: 80vw;
+    height: 3rem;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+    text-indent: .5rem;
+}
+.formTitle {
+    margin: 0.3rem 0;
+}
+.formTitleText {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}
+.buyButton {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #FFFFFF;
+}
+.buttonActive {
+    height: 6vh;
+    width: 60vw;
+    background-color: #E8833A;
+    border-radius: .3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

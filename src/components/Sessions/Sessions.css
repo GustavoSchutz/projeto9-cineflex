@@ -62,9 +62,10 @@
     height: 12vh;
     margin: 1rem;
 }
-.selectedMovieName {
+.selectedMovieName, .selectedMovieDate {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
+    color: #293845;
 }
 .selectedMovieInfo {
     display: flex;
